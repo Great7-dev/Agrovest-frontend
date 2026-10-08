@@ -1,7 +1,7 @@
-// export const BASE_URL = process.env.NEXT_BASE_API_URL;
+// export const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // if (!BASE_URL) {
-//   throw new Error("NEXT_BASE_API_URL is not configured");
+//   throw new Error("NEXT_PUBLIC_API_URL is not configured");
 // }
 
 // export type Listing = {
@@ -212,10 +212,10 @@
 //   return data as T;
 // };
 
-const RAW_BASE_URL = process.env.NEXT_BASE_API_URL;
+const RAW_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 if (!RAW_BASE_URL) {
-  throw new Error("NEXT_BASE_API_URL is not configured");
+  throw new Error("NEXT_PUBLIC_API_URL is not configured");
 }
 
 // Strip any trailing slash so BASE_URL + "/api/..." never becomes "//api/...".
@@ -324,7 +324,7 @@ export const naira = (n: number) => "₦" + n.toLocaleString();
 // wrong, instead of a generic "returned HTML".
 function nonJsonMessage(kind: string, status: number, path: string): string {
   if (status === 404) {
-    return `${kind} failed (404): ${path} was not found on the server. Check the route exists and that NEXT_BASE_API_URL points at the right backend.`;
+    return `${kind} failed (404): ${path} was not found on the server. Check the route exists and that NEXT_PUBLIC_API_URL points at the right backend.`;
   }
   if (status === 502 || status === 503 || status === 504) {
     return `${kind} failed (${status}): the server is unavailable or still waking up. Wait about 30–60 seconds and try again.`;

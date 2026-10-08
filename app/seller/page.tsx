@@ -41,7 +41,7 @@ export default function Seller() {
   const load = () => {
     j<MyBatch[]>("/my/batches").then(setBatches);
     j<Order[]>("/my/orders").then(setOrders);
-    j<{ phone?: string; location?: string }>("/me").then((m) =>
+    j<{ phone?: string; location?: string }>("/auth/me").then((m) =>
       setMe({ phone: m.phone || "", location: m.location || "" }),
     );
   };
@@ -243,7 +243,9 @@ export default function Seller() {
             onChange={(e) => setMe({ ...me, location: e.target.value })}
           />
           <button
-            onClick={() => act(post("/me", me, "PATCH"), "Contact saved ✓")}
+            onClick={() =>
+              act(post("/auth/me", me, "PATCH"), "Contact saved ✓")
+            }
             className="w-full rounded-xl bg-leaf py-3 font-semibold text-cream"
           >
             Save contact
